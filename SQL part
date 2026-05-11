@@ -1,0 +1,44 @@
+# SQL queries
+CREATE DATABASE ecommerce_db;
+USE ecommerce_db;
+SELECT * FROM cleaned_data LIMIT 10;
+SELECT SUM(total_amount) AS total_revenue
+FROM cleaned_data;
+SELECT COUNT(order_id) AS total_orders
+FROM cleaned_data;
+SELECT category,
+       SUM(total_amount) AS revenue
+FROM cleaned_data
+GROUP BY category
+ORDER BY revenue DESC
+LIMIT 10;
+SELECT payment_method,
+       COUNT(*) AS usage_count
+FROM cleaned_data
+GROUP BY payment_method
+ORDER BY usage_count DESC;
+SELECT region,
+       SUM(total_amount) AS revenue
+FROM cleaned_data
+GROUP BY region
+ORDER BY revenue DESC;
+SELECT AVG(delivery_time_days) AS avg_delivery_days
+FROM cleaned_data;
+SELECT returned,
+       COUNT(*) AS total_orders
+FROM cleaned_data
+GROUP BY returned;
+SELECT category,
+       AVG(profit_margin) AS avg_profit_margin
+FROM cleaned_data
+GROUP BY category
+ORDER BY avg_profit_margin DESC;
+SELECT customer_gender,
+       SUM(total_amount) AS total_spending
+FROM cleaned_data
+GROUP BY customer_gender;
+SELECT customer_age,
+       AVG(total_amount) AS avg_purchase
+FROM cleaned_data
+GROUP BY customer_age
+ORDER BY customer_age;
